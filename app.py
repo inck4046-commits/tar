@@ -1441,10 +1441,18 @@ def build_ui():
 # Main
 # =============================================================================
 
-# 맨 아래 launch 부분만 수정
-import os
-port = int(os.environ.get("PORT", "7860"))
-demo = build_ui()
-demo.queue().launch(server_name="0.0.0.0", server_port=port, show_api=False, share=False)
+if __name__ == "__main__":
+    # Render/Fly/Railway 같은 PaaS는 PORT 환경변수를 준다.
+    # 없으면 로컬/Spaces 기본값 7860 사용.
+    import os
+    port = int(os.environ.get("PORT", "7860"))
+
+    demo = build_ui()
+    demo.queue().launch(
+        server_name="0.0.0.0",
+        server_port=port,
+        show_api=False,
+        share=False
+    )
 
 
