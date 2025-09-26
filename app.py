@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 
 import os, json, math, itertools, tempfile, hashlib
@@ -1440,7 +1441,10 @@ def build_ui():
 # Main
 # =============================================================================
 
-if __name__ == "__main__":
-    demo = build_ui()
-    demo.queue().launch(server_name="0.0.0.0", server_port=7860, show_api=False, share=False)
+# 맨 아래 launch 부분만 수정
+import os
+port = int(os.environ.get("PORT", "7860"))
+demo = build_ui()
+demo.queue().launch(server_name="0.0.0.0", server_port=port, show_api=False, share=False)
+
 
